@@ -1,6 +1,4 @@
 # Oh!!迷子ッド
-<a href="https://imgur.com/cra1YPX"><img src="https://i.imgur.com/cra1YPX.png" title="source: https://youtu.be/Bpuqe9G_IL4" /></a>
-[![Product Name](https://imgur.com/cra1YPX)](https://youtu.be/Bpuqe9G_IL4)
 
 ## 製品概要
 ### 迷子 Tech
