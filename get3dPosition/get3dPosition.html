@@ -1,0 +1,99 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://obniz.io/js/jquery-3.2.1.min.js"></script>
+    <script src="https://unpkg.com/obniz@2.4.0/obniz.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <title>"Oh!!迷子ッド" デモ画面</title>
+    <style type="text/css">
+        .floor {
+            font-size: 30px;
+            position: right;
+            margin-left: 500px;
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="myDiv"></div>
+    <div id="floor" class="floor"></div>
+
+
+
+</body>
+<script src="https://obniz.io/users/2245/repo/get3dPosition.js"></script>
+
+<!--<script src="get3dPosition.js"></script>-->
+
+
+<script>
+
+
+
+
+    $(function () {
+        get3D();
+        setInterval(function () { get3D(); }, 3000);
+    });
+
+
+    function get3D() {
+
+        $.ajax({
+            type: "get",
+            url: "http://ec2-13-231-104-186.ap-northeast-1.compute.amazonaws.com:2828/coord/parent",
+            dataType: "json",
+            success: function (data, dataType) {
+                parentX = data.coord[0];
+                parentY = data.coord[1];
+                parentZ = data.coord[2];
+                console.log( "parent: {x: " + parentX + ", y: " + parentY +  ", z: " + parentZ + " }" );
+            }
+        });
+
+        $.ajax({
+            type: "get",
+            url: "http://ec2-13-231-104-186.ap-northeast-1.compute.amazonaws.com:2828/coord/child",
+            dataType: "json",
+            success: function (data, dataType) {
+                childX = data.coord[0];
+                childY = data.coord[1];
+                childZ = data.coord[2];
+                console.log( "child: {x: " + childX + ", y: " + childY +  ", z: " + childZ + " }" );
+
+            }
+        });
+
+        $.ajax({
+            type: "get",
+            url: "http://ec2-13-231-104-186.ap-northeast-1.compute.amazonaws.com:2828/floor/child",
+            dataType: "json",
+            success: function (data, dataType) {
+                parentFloor = data.floor;
+                console.log(parentFloor)
+            }
+        });
+        $.ajax({
+            type: "get",
+            url: "http://ec2-13-231-104-186.ap-northeast-1.compute.amazonaws.com:2828/height/child",
+            dataType: "json",
+            success: function (data, dataType) {
+                childFloor = data.floor;
+            }
+        });
+
+    }
+
+
+
+</script>
+
+
+
+</html>
