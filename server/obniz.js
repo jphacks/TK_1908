@@ -1,3 +1,5 @@
+//obniz制御
+
 class DPS310 {
     constructor() {
         this.requiredKeys = [];
